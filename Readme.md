@@ -23,6 +23,12 @@ Note that the OAM physically lacks cells for bits 2-4 attribute bytes (Byte 2). 
 
 One of the distinguishing features in the NTSC version of the PPU is that the OAM address is fed in inverted form (`/OAM0-7`). This causes the logical column numbers to no longer correspond to their physical location.
 
+The PPU developers also took this feature into account to connect rows for bits 2-4:
+
+![pal_oam_row_outputs2](/pal_oam_row_outputs2.png)
+
+(NTSC PPU to the left)
+
 ## How to view the map
 
 The utility creates an .xml file, which should be opened in the Deroute utility (File -> Add entities...)
