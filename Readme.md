@@ -1,30 +1,30 @@
 # OAMMap
 
-Небольшая утилита для создания наглядной карты памяти PPU OAM.
+A small utility for creating a visual map of the PPU OAM.
 
 ![oammap_demo](/oammap_demo.jpg)
 
-Карта представляется в виде набора квадратов, каждый квадрат соответствует одному физическому расположению ячейки памяти на чипе.
+The map is presented as a set of squares, each square corresponds to one physical location of a memory cell on the chip.
 
-Ячейки помечаются цветами:
+The cells are color coded:
 - LimeGreen: Byte 0 (Y)
 - Ivory: Byte 1 (Index)
 - Red: Byte 2 (Attr)
 - Blue: Byte 3 (X)
-- DarkViolet: Bytes for Temp OAM (общим цветом)
+- DarkViolet: Bytes for Temp OAM ( common color)
 
-Внутри каждой ячейки находится подпись, вида `AA-B`:
-- AA: Адрес ячейки 00-FF
-- B: Номер бита соответствующего байта.
+Inside each cell is a caption, of the form `AA-B`:
+- AA: Cell address 00-FF
+- B: The bit number of the corresponding byte.
 
-Учитывайте что в OAM физически отсуствуют ячейки для разрядов 2-4 байта атрибутов (Byte 2). Однако в Temp OAM для них есть место, но туда всегда копируются нули.
+Note that the OAM physically lacks cells for bits 2-4 attribute bytes (Byte 2). However, Temp OAM has a place for them, but zeros are always copied there.
 
 ## NTSC vs PPU
 
-Одной из отличительных особенностей в NTSC версии PPU является то, что адрес OAM подается в инвертированном виде (`/OAM0-7`). Это приводит к тому, что логические номера колонок перестают соответствовать их физическому расположению.
+One of the distinguishing features in the NTSC version of the PPU is that the OAM address is fed in inverted form (`/OAM0-7`). This causes the logical column numbers to no longer correspond to their physical location.
 
-## Как смотреть карту
+## How to view the map
 
-Утилита создает .xml файл, который нужно открывать в утилите Deroute (File -> Add entities...)
+The utility creates an .xml file, which should be opened in the Deroute utility (File -> Add entities...)
 
 https://github.com/emu-russia/psxdev/releases

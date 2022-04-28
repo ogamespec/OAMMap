@@ -23,7 +23,7 @@ void EmitCellText(std::string &text, size_t bit_num, size_t row, size_t col, siz
         }
     }
 
-    sprintf_s(CellLabel, sizeof(CellLabel), "%02X-%d\nrow: %d\ncol: %d", (uint8_t)oam_addr, bit_num, row, col);
+    sprintf_s(CellLabel, sizeof(CellLabel), "%02X-%zd\nrow: %zd\ncol: %zd", (uint8_t)oam_addr, bit_num, row, col);
 
     if (row == 8)
     {
