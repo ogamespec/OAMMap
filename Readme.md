@@ -2,7 +2,7 @@
 
 A small utility for creating a visual map of the PPU OAM.
 
-![oammap_demo](/oammap_demo.jpg)
+![oammap_demo](/oammap_demo.png)
 
 The map is presented as a set of squares, each square corresponds to one physical location of a memory cell on the chip.
 
@@ -28,3 +28,11 @@ One of the distinguishing features in the NTSC version of the PPU is that the OA
 The utility creates an .xml file, which should be opened in the Deroute utility (File -> Add entities...)
 
 https://github.com/emu-russia/psxdev/releases
+
+## Pre-made OAM Maps
+
+:warning: The pictures are big.
+
+|NTSC OAM Map|PAL OAM Map|
+|---|---|
+|![oammap_ntsc](/oammap_ntsc.png)|![oammap_pal](/oammap_pal.png)|

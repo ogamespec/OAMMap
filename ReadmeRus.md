@@ -2,7 +2,7 @@
 
 Небольшая утилита для создания наглядной карты памяти PPU OAM.
 
-![oammap_demo](/oammap_demo.jpg)
+![oammap_demo](/oammap_demo.png)
 
 Карта представляется в виде набора квадратов, каждый квадрат соответствует одному физическому расположению ячейки памяти на чипе.
 
@@ -28,3 +28,11 @@
 Утилита создает .xml файл, который нужно открывать в утилите Deroute (File -> Add entities...)
 
 https://github.com/emu-russia/psxdev/releases
+
+## Заранее сделанные карты OAM
+
+:warning: Картинки большие и могут повредить ваш мозг.
+
+|NTSC OAM Map|PAL OAM Map|
+|---|---|
+|![oammap_ntsc](/oammap_ntsc.png)|![oammap_pal](/oammap_pal.png)|
