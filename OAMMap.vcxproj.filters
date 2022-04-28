@@ -34,7 +34,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ReadmeRus.md" />
     <None Include="Readme.md" />
-    <None Include="ReadmeEng.md" />
   </ItemGroup>
 </Project>

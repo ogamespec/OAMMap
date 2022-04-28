@@ -161,8 +161,8 @@
     <ClInclude Include="TemplateStrings.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ReadmeRus.md" />
     <None Include="Readme.md" />
-    <None Include="ReadmeEng.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -117,6 +117,25 @@ void GenMap(bool ntsc_ppu)
     }
 }
 
+/// <summary>
+/// Output the logical NTSC OAM column numbers.
+/// The output is from right to left relative to the physical addressing of the columns.
+/// </summary>
+void PrintNtscColumns()
+{
+    for (int n = 0; n < 4; n++)
+    {
+        printf("%d ", (0 << 2) | n);
+        printf("%d ", (4 << 2) | n);
+        printf("%d ", (2 << 2) | n);
+        printf("%d ", (6 << 2) | n);
+        printf("%d ", (1 << 2) | n);
+        printf("%d ", (5 << 2) | n);
+        printf("%d ", (3 << 2) | n);
+        printf("%d\n", (7 << 2) | n);
+    }
+}
+
 int main()
 {
     GenMap(true);
