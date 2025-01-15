@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-void EmitCellText(std::string &text, size_t bit_num, size_t row, size_t col, size_t pp[8])
+void EmitCellText(std::string &text, size_t bit_num, size_t col, size_t row, size_t pp[8])
 {
     char cell[0x400]{};
     const char* CellColor = "";
@@ -10,18 +10,18 @@ void EmitCellText(std::string &text, size_t bit_num, size_t row, size_t col, siz
 
     size_t oam_addr;
 
-    if (row == 8)
+    if (col == 8)
     {
-        oam_addr = col;    // Temp OAM
+        oam_addr = row;    // Temp OAM
     }
     else
     {
-        oam_addr = (col << 3) | row;
+        oam_addr = (row << 3) | col;
     }
 
-    sprintf_s(CellLabel, sizeof(CellLabel), "%02X-%zd\nrow: %zd\ncol: %zd", (uint8_t)oam_addr, bit_num, row, col);
+    sprintf_s(CellLabel, sizeof(CellLabel), "%02X-%zd\ncol: %zd\nrow: %zd", (uint8_t)oam_addr, bit_num, col, row);
 
-    if (row == 8)
+    if (col == 8)
     {
         CellColor = "DarkViolet";       // Temp OAM
     }
@@ -58,18 +58,18 @@ const size_t cellSize = 10ULL;
 const size_t GapBetweenBanks = 30ULL;
 const size_t GapBetweenCells = 1ULL;
 
-void GenRowLane(std::string & text, size_t& y, size_t bit_num, size_t row, bool ntsc_ppu)
+void GenRowLane(std::string & text, size_t& y, size_t bit_num, size_t col, bool ntsc_ppu)
 {
-    int cols_order_ntsc[] = { 31, 15, 23, 7, 27, 11, 19, 3, 30, 14, 22, 6, 26, 10, 18, 2, 29, 13, 21, 5, 25, 9, 17, 1, 28, 12, 20, 4, 24, 8, 16, 0 };
-    int cols_order_pal[] = { 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+    int rows_order_ntsc[] = { 31, 15, 23, 7, 27, 11, 19, 3, 30, 14, 22, 6, 26, 10, 18, 2, 29, 13, 21, 5, 25, 9, 17, 1, 28, 12, 20, 4, 24, 8, 16, 0 };
+    int rows_order_pal[] = { 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
 
-    int* cols_order = ntsc_ppu ? cols_order_ntsc : cols_order_pal;
+    int* rows_order = ntsc_ppu ? rows_order_ntsc : rows_order_pal;
 
     size_t pp[8]{};
 
     for (size_t n = 0; n < 32; n++)
     {
-        size_t col = cols_order[n];
+        size_t row = rows_order[n];
 
         size_t x = (cellSize + GapBetweenCells) * n + originOffset;
         size_t cell_y = y;
@@ -88,7 +88,7 @@ void GenRowLane(std::string & text, size_t& y, size_t bit_num, size_t row, bool 
         pp[6] = x;
         pp[7] = cell_y + cellSize;
 
-        EmitCellText(text, bit_num, row, col, pp);
+        EmitCellText(text, bit_num, col, row, pp);
     }
 
     y += cellSize + GapBetweenCells;
@@ -96,11 +96,11 @@ void GenRowLane(std::string & text, size_t& y, size_t bit_num, size_t row, bool 
 
 void GenMap(bool ntsc_ppu)
 {
-    // Order of rows
-    int rows_order_ntsc[] = { 1, 3, 5, 7, 0, 2, 4, 6, 8 };
-    int rows_order_pal[] = { 6, 4, 2, 0, 7, 5, 3, 1, 8 };
-    int rows_order_ntsc_24[] = { 1, 3, 7, 0, 4, 5, 8 };
-    int rows_order_pal_24[] = { 5, 4, 0, 7, 3, 1, 8 };
+    // Order of columns
+    int cols_order_ntsc[] = { 1, 3, 5, 7, 0, 2, 4, 6, 8 };
+    int cols_order_pal[] = { 6, 4, 2, 0, 7, 5, 3, 1, 8 };
+    int cols_order_ntsc_24[] = { 1, 3, 7, 0, 4, 5, 8 };
+    int cols_order_pal_24[] = { 5, 4, 0, 7, 3, 1, 8 };
 
     std::string text = "";
 
@@ -116,16 +116,16 @@ void GenMap(bool ntsc_ppu)
         {
             if (ntsc_ppu)
             {
-                for (size_t p = 0; p < _countof(rows_order_ntsc_24); p++)
+                for (size_t p = 0; p < _countof(cols_order_ntsc_24); p++)
                 {
-                    GenRowLane(text, y, n, rows_order_ntsc_24[p], ntsc_ppu);
+                    GenRowLane(text, y, n, cols_order_ntsc_24[p], ntsc_ppu);
                 }
             }
             else
             {
-                for (size_t p = 0; p < _countof(rows_order_pal_24); p++)
+                for (size_t p = 0; p < _countof(cols_order_pal_24); p++)
                 {
-                    GenRowLane(text, y, n, rows_order_pal_24[p], ntsc_ppu);
+                    GenRowLane(text, y, n, cols_order_pal_24[p], ntsc_ppu);
                 }
             }
         }
@@ -133,16 +133,16 @@ void GenMap(bool ntsc_ppu)
         {
             if (ntsc_ppu)
             {
-                for (size_t p = 0; p < _countof(rows_order_ntsc); p++)
+                for (size_t p = 0; p < _countof(cols_order_ntsc); p++)
                 {
-                    GenRowLane(text, y, n, rows_order_ntsc[p], ntsc_ppu);
+                    GenRowLane(text, y, n, cols_order_ntsc[p], ntsc_ppu);
                 }
             }
             else
             {
-                for (size_t p = 0; p < _countof(rows_order_pal); p++)
+                for (size_t p = 0; p < _countof(cols_order_pal); p++)
                 {
-                    GenRowLane(text, y, n, rows_order_pal[p], ntsc_ppu);
+                    GenRowLane(text, y, n, cols_order_pal[p], ntsc_ppu);
                 }
             }
         }

@@ -25,13 +25,13 @@ One of the distinguishing features in the NTSC version of the PPU is that the OA
 
 The PPU developers also took this feature into account to connect rows for bits 2-4:
 
-![pal_oam_row_outputs2](/pal_oam_row_outputs2.png)
+![pal_oam_row_outputs2](/pal_oam_col_outputs2.png)
 
 (NTSC PPU to the left)
 
 ## How to view the map
 
-The utility creates an .xml file, which should be opened in the Deroute utility (File -> Add entities...)
+The utility creates an .xml file, which should be opened in the [Deroute](https://github.com/emu-russia/Deroute) utility (File -> Add entities...)
 
 https://github.com/emu-russia/psxdev/releases
 

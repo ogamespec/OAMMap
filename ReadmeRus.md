@@ -25,15 +25,13 @@
 
 Разработчики PPU также учли эту особенность для подключения рядов для разрядов 2-4:
 
-![pal_oam_row_outputs2](/pal_oam_row_outputs2.png)
+![pal_oam_row_outputs2](/pal_oam_col_outputs2.png)
 
 (NTSC PPU слева)
 
 ## Как смотреть карту
 
-Утилита создает .xml файл, который нужно открывать в утилите Deroute (File -> Add entities...)
-
-https://github.com/emu-russia/psxdev/releases
+Утилита создает .xml файл, который нужно открывать в утилите [Deroute](https://github.com/emu-russia/Deroute) (File -> Add entities...)
 
 ## Заранее сделанные карты OAM
 
