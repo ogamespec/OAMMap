@@ -33,8 +33,6 @@ The PPU developers also took this feature into account to connect rows for bits 
 
 The utility creates an .xml file, which should be opened in the [Deroute](https://github.com/emu-russia/Deroute) utility (File -> Add entities...)
 
-https://github.com/emu-russia/psxdev/releases
-
 ## Pre-made OAM Maps
 
 :warning: The pictures are big.
